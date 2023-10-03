@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
+import TodoTable from "./TodoTable";
 
 function ToDoList() {
     const [todo, setTodo] = useState({ desc: '', date: '' });
@@ -12,6 +11,9 @@ function ToDoList() {
     const addTodo = () => {
         setTodos([...todos, todo]);
     };
+    const deleteLine = (e) => {
+        setTodos(todos.filter((todo, i) => i != e.target.value))
+    };
 
     return (
         <>
@@ -20,17 +22,7 @@ function ToDoList() {
             <label>Date:</label>
             <input type="text" name="date" onChange={inputChanged} value={todo.date} />
             <button onClick={addTodo}>Add</button>
-            <table>
-                <tbody>
-                    <tr><th>Date</th><th>Description</th></tr>
-                    {todos.map((todo, index) => (
-                        <tr key={index}>
-                            <td>{todo.date}</td>
-                            <td>{todo.desc}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+            <TodoTable todos={todos} deleteLine={deleteLine} />
         </>
     );
 }
