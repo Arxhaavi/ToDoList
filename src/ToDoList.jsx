@@ -5,7 +5,7 @@ import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-
+import TabMenu from "./TabMenu";
 
 
 function ToDoList() {
@@ -49,7 +49,7 @@ function ToDoList() {
                 <label>Description</label>
                 <input type="text" name="description" onChange={inputChanged} value={todo.description} />
                 <label>Date:</label>
-                <DatePicker value={todo.date} onChange={newDate => setTodo({ ...todo, date: newDate })} />
+                <DatePicker format="DD/MM/YYYY" value={todo.date} onChange={newDate => setTodo({ ...todo, date: newDate })} />
                 <label>Priority:</label>
                 <input type="text" name="priority" onChange={inputChanged} value={todo.priority} />
                 <button onClick={addTodo}>Add</button>
